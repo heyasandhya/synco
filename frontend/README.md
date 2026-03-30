@@ -1,16 +1,44 @@
-# React + Vite
+🚀 Synco – AI Job Preparation Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Synco is a Full Stack Gen AI web application that helps users prepare for jobs by analyzing resumes, detecting skill gaps, and generating interview questions.
+ ✨ Features
 
-Currently, two official plugins are available:
+* Resume Upload & Analysis
+* Skill Gap Detection
+* AI Interview Questions
+* ATS-Friendly Resume Generation
+* JWT Authentication
+ 🛠️ Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Frontend: React.js
+* Backend: Node.js, Express.js
+* Database: MongoDB
+* AI: Gemini API
+* Tools: Multer, Puppeteer
 
-## React Compiler
+⚙️ Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+git clone https://github.com/your-username/synco.git
+cd synco
+```
+ Install
 
-## Expanding the ESLint configuration
+```bash
+cd server && npm install
+cd ../client && npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Run
+
+```bash
+cd server && npm start
+cd client && npm run dev
+```
+
+ 📌 API
+
+* POST /api/auth/login
+* POST /api/interview/generate-report
+
+
