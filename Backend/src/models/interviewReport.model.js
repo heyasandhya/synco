@@ -79,7 +79,7 @@ const skillGapSchema = new mongoose.Schema({
 	_id: false,
 })
 
-const preparationPlanSchema = new mongoose({
+const preparationPlanSchema = new mongoose.Schema({
 	day: {
 		type: Number,
 		required: [true, "Day is required"]
@@ -105,15 +105,19 @@ const interviewReportSchema = new mongoose.Schema({
 	selfDescription: {
 		type: String,
 	},
-	matchScore: {
+	matchscore: {
 		type: Number,
 		min: 0,
 		max: 100,
 	},
-	technicalQuestion: [technicalQuestionSchema],
-	behavioralQuestion: [behavioralQuestionSchema],
+	technicalQuestions: [technicalQuestionSchema],
+	behavioralQuestions: [behavioralQuestionSchema],
 	skillGap: [skillGapSchema],
-	preparationPlan: [preparationPlanSchema]
+	preparationPlan: [preparationPlanSchema],
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "users"
+	}
 }, {
 	timestamps: true
 })
