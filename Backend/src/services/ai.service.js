@@ -14,7 +14,7 @@ const interviewReportSchema = z.object({
 		intention: z.string().describe("The intention of the interview behind asking this question"),
 		answer: z.string().describe("How to answer this question, what points to be cover, what approaches to take etc.")
 	})).describe("Technical questions that can be asked in the interview along with the intention behind asking this question and how to answer it"),
-	ByteLengthQueuing: z.array(z.object({
+	behavioralQuestions: z.array(z.object({
 		question: z.string().describe("The technical question can be asked in the interview"),
 		intention: z.string().describe("The intention of the interview behind asking this question"),
 		answer: z.string().describe("How to answer this question, what points to be cover, what approaches to take etc.")
@@ -33,10 +33,60 @@ const interviewReportSchema = z.object({
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
 
-	const prompt = `Generate an interview report for a candidate with the following information:
-	Resume: ${resume}
-	Self Description: ${selfDescription}
-	Job Description: ${jobDescription}`	
+	const prompt = `
+You are an expert interviewer.
+
+Generate STRICT JSON in this EXACT format:
+
+{
+  "matchscore": number,
+  "technicalQuestions": [
+    {
+      "question": "string",
+      "intention": "string",
+      "answer": "string"
+    }
+  ],
+  "behavioralQuestions": [
+    {
+      "question": "string",
+      "intention": "string",
+      "answer": "string"
+    }
+  ],
+  "skillGap": [
+    {
+      "skill": "string",
+      "severity": "low | medium | high"
+    }
+  ],
+  "preparationPlan": [
+    {
+      "day": number,
+      "focus": "string",
+      "tasks": ["string"]
+    }
+  ]
+}
+
+Rules:
+- Minimum 5 technical questions
+- Minimum 3 behavioral questions
+- At least 3 skill gaps
+- 5-day preparation plan
+- Do NOT return empty arrays
+- Do NOT change field names
+- Output ONLY JSON
+
+Resume:
+${resume}
+
+Self Description:
+${selfDescription}
+
+Job Description:
+${jobDescription}
+`
 
 	const response = await ai.models.generateContent({
 		model: "gemini-3-flash-preview",
@@ -46,7 +96,16 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 			responseSchema: zodToJsonSchema(interviewReportSchema)
 		}
 	})
-	return JSON.parse(response.text)
+	const raw = response.text
+
+if (!raw) {
+	throw new Error("No AI response")
+}
+
+const result = JSON.parse(raw)
+
+console.log("AI FINAL RESPONSE:", result) 
+return result
 	
 }
 
