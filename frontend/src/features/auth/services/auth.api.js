@@ -60,7 +60,7 @@ export async function getMe() {
 
 	} catch (err) {
 		console.log(err);
-
+		return null;
 	}
 }
 
