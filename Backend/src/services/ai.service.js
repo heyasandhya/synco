@@ -36,7 +36,9 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 	const prompt = `
 You are an expert interviewer.
 
-Generate STRICT JSON in this EXACT format:
+Return ONLY valid JSON. No text, no explanation.
+
+STRICT FORMAT (must follow exactly):
 
 {
   "matchscore": number,
@@ -57,12 +59,12 @@ Generate STRICT JSON in this EXACT format:
   "skillGap": [
     {
       "skill": "string",
-      "severity": "low | medium | high"
+      "severity": "low"
     }
   ],
   "preparationPlan": [
     {
-      "day": number,
+      "day": 1,
       "focus": "string",
       "tasks": ["string"]
     }
@@ -70,13 +72,11 @@ Generate STRICT JSON in this EXACT format:
 }
 
 Rules:
-- Minimum 5 technical questions
-- Minimum 3 behavioral questions
-- At least 3 skill gaps
-- 5-day preparation plan
-- Do NOT return empty arrays
-- Do NOT change field names
-- Output ONLY JSON
+- DO NOT return arrays of strings
+- DO NOT return key-value pairs separately
+- Each item MUST be a proper object
+- Follow schema strictly
+- Output ONLY JSON (no markdown, no explanation)
 
 Resume:
 ${resume}
@@ -98,15 +98,15 @@ ${jobDescription}
 	})
 	const raw = response.text
 
-if (!raw) {
-	throw new Error("No AI response")
-}
+	if (!raw) {
+		throw new Error("No AI response")
+	}
 
-const result = JSON.parse(raw)
+	const result = JSON.parse(raw)
 
-console.log("AI FINAL RESPONSE:", result) 
-return result
-	
+	console.log("AI FINAL RESPONSE:", result)
+	return result
+
 }
 
 
