@@ -1,44 +1,32 @@
-🚀 Synco – AI Job Preparation Platform
+# 🚀 Synco – AI Job Preparation Platform  
 
-Synco is a Full Stack Gen AI web application that helps users prepare for jobs by analyzing resumes, detecting skill gaps, and generating interview questions.
- ✨ Features
+Synco is a Full Stack GenAI-powered web application designed to help users prepare for jobs effectively. It analyzes resumes, identifies skill gaps, and generates AI-driven interview questions to enhance job readiness.
 
-* Resume Upload & Analysis
-* Skill Gap Detection
-* AI Interview Questions
-* ATS-Friendly Resume Generation
-* JWT Authentication
- 🛠️ Tech Stack
+---
 
-* Frontend: React.js
-* Backend: Node.js, Express.js
-* Database: MongoDB
-* AI: Gemini API
-* Tools: Multer, Puppeteer
+✨ Features  
 
-⚙️ Setup
+- 📄 Resume Upload & Analysis – Upload resumes and get detailed insights  
+- 🎯 Skill Gap Detection – Identify missing skills based on job roles  
+- 🤖 AI Interview Questions – Generate personalized interview questions  
+- 📑 ATS-Friendly Resume Generation – Create optimized resumes  
+- 🔐 JWT Authentication – Secure login and session management  
 
+---
+
+🛠️ Tech Stack  
+
+- Frontend: React.js  
+- Backend: Node.js, Express.js  
+- Database: MongoDB  
+- AI Integration: Gemini API  
+- Tools: Multer, Puppeteer  
+
+---
+
+⚙️ Setup Instructions  
+
+1️⃣ Clone the Repository  
 ```bash
 git clone https://github.com/your-username/synco.git
 cd synco
-```
- Install
-
-```bash
-cd server && npm install
-cd ../client && npm install
-```
-
-Run
-
-```bash
-cd server && npm start
-cd client && npm run dev
-```
-
- 📌 API
-
-* POST /api/auth/login
-* POST /api/interview/generate-report
-
-
