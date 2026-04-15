@@ -31,7 +31,7 @@ export const useInterview = () => {
 
 		} catch (error) {
 			console.log(error)
-			return null   // ✅ IMPORTANT
+			return null   
 		} finally {
 			setLoading(false)
 		}
@@ -45,7 +45,7 @@ export const useInterview = () => {
 			response = await getInterviewReportById(interviewId)
 			setReport(response.interviewReport)
 		} catch (error) {
-			// handle error
+			
 			console.log(error)
 		} finally {
 			setLoading(false)
