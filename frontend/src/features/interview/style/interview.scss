@@ -131,23 +131,99 @@ $severity-low: #3fb950;
     padding: 1.75rem 1.25rem;
 }
 
-// ── Score ────────────────────────────────────────────────────────────────────
-.match-score {
-    &__ring {
-        border: 4px solid;
 
-        &.score--high { border-color: $severity-low; }
-        &.score--mid { border-color: $severity-medium; }
-        &.score--low { border-color: $severity-high; }
-    }
+
+.match-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 14px; // spacing between label, circle, text
+}
+
+.match-score__label {
+  margin-bottom: 4px; // thoda gap
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.match-score__value {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.match-score__pct {
+  font-size: 14px;
+}
+// ── Score ────────────────────────────────────────────────────────────────────
+.match-score__ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 6px solid;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto; 
+
+  // 🎯 Default (fallback)
+  border-color: #2a2a2a;
+
+  // 🟢 High score (>=80)
+  &.score--high {
+    border-color: #23964d;
+  }
+
+  // 🟡 Medium score (60–79)
+  &.score--mid {
+    border-color: #facc15;
+  }
+
+  // 🔴 Low score (<60)
+  &.score--low {
+    border-color: #ef4444;
+  }
 }
 
 // ── Skill Tags ───────────────────────────────────────────────────────────────
 .skill-tag {
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.4rem;
+  padding: 5px 10px;
+  border-radius: 20px; // 🔥 pill shape
+  font-size: 12px;
+  border: 1px solid;   // 🔥 border add
+  text-transform: lowercase;
+  
 
-    &--high { color: $severity-high; }
-    &--medium { color: $severity-medium; }
-    &--low { color: $severity-low; }
+  &--high {
+    color: $severity-high;
+    border-color: $severity-high;
+  }
+
+  &--medium {
+    color: $severity-medium;
+    border-color: $severity-medium;
+  }
+
+  &--low {
+    color: $severity-low;
+    border-color: $severity-low;
+  }
+}
+
+.skill-gaps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; // 🔥 label aur tags ke beech space
+}
+
+
+
+.skill-gaps__list {
+  display: flex;
+  gap: 10px;      
+  flex-wrap: nowrap;
+  overflow-x: auto; // 🔥 overflow handle
+  padding-bottom: 4px;
 }
