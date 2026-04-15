@@ -11,22 +11,30 @@ export const useInterview = () => {
 	if (!context) {
 		throw new Error("useInterview must be used within an interviewProvider")
 	}
-
 	const { loading, setLoading, report, setReport, reports, setReports } = context
+
+
 
 	const generateReport = async ({ jobDescription, selfDescription, resumeFile }) => {
 		setLoading(true)
 		let response = null
+
 		try {
 			response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
+
+			if (!response || !response.interviewReport) {
+				throw new Error("Invalid response from server")
+			}
+
 			setReport(response.interviewReport)
+			return response.interviewReport
+
 		} catch (error) {
-			console.log(error);
+			console.log(error)
+			return null   // ✅ IMPORTANT
 		} finally {
 			setLoading(false)
 		}
-
-		return response.interviewReport
 	}
 
 
@@ -35,13 +43,9 @@ export const useInterview = () => {
 		let response = null
 		try {
 			response = await getInterviewReportById(interviewId)
-
-			console.log("Res", response)
-			console.log("Interview", response?.interviewReport)
-
 			setReport(response.interviewReport)
-
 		} catch (error) {
+			// handle error
 			console.log(error)
 		} finally {
 			setLoading(false)
@@ -56,7 +60,8 @@ export const useInterview = () => {
 			response = await getAllInterviewReport()
 			setReports(response.interviewReport)
 		} catch (error) {
-			console.log(error);
+			// handle error
+			console.log(error)
 		} finally {
 			setLoading(false)
 		}
@@ -76,6 +81,7 @@ export const useInterview = () => {
 			link.click()
 		}
 		catch (error) {
+			// handle error
 			console.log(error)
 		} finally {
 			setLoading(false)
