@@ -23,7 +23,8 @@ $severity-low: #3fb950;
 // ── Page Shell ───────────────────────────────────────────────────────────────
 .interview-page {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     background-color: $bg-page;
     color: $text-primary;
     font-family: $font-stack;
@@ -53,7 +54,7 @@ $severity-low: #3fb950;
 
 // ── Nav ──────────────────────────────────────────────────────────────────────
 .interview-nav {
-    width: 220px;
+    width: 260px;
     flex-shrink: 0;
     padding: 1.75rem 1rem;
     display: flex;
@@ -74,11 +75,14 @@ $severity-low: #3fb950;
     &__item {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
-        padding: 0.65rem 0.75rem;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem 0.75rem;
         border-radius: 0.5rem;
         color: $text-muted;
         cursor: pointer;
+        margin-bottom: 10px;
+        transition: all 0.1s ease-in-out;
 
         &:hover {
             background-color: $bg-panel;
@@ -96,14 +100,16 @@ $severity-low: #3fb950;
 .interview-content {
     flex: 1;
     padding: 1.75rem 2rem;
-    overflow-y: auto;
 }
 
 // ── Cards ────────────────────────────────────────────────────────────────────
+
 .q-card {
     background-color: $bg-panel;
     border: 1px solid $border-color;
     border-radius: 0.6rem;
+    margin: 1rem 0rem;
+    padding: 1rem;
 
     &:hover {
         border-color: color.adjust($border-color, $lightness: 8%);
@@ -215,6 +221,9 @@ $severity-low: #3fb950;
 .skill-gaps {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
   gap: 10px; // 🔥 label aur tags ke beech space
 }
 
