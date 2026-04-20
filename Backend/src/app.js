@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())  
 app.use(cors({
-	origin: "https://synco-s5xg.onrender.com",
+	origin: "https://synco-omega.vercel.app",
 	credentials: true
 }))
 
