@@ -52,15 +52,16 @@ export async function logout() {
 }
 
 export async function getMe() {
+  try {
+    const response = await api.get("/api/auth/get-me");
+    return response.data;
+  } catch (err) {
+    if (err.response?.status === 401) {
+      return null;
+    }
 
-	try {
-		const response = await api.get('/api/auth/get-me')
-
-		return response.data
-
-	} catch (err) {
-		console.log(err);
-		return null;
-	}
+    console.log(err);
+    return null;
+  }
 }
 
